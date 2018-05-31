@@ -15,7 +15,7 @@ body {
 .market-list-title {
   width: 50%;
   position: relative;
-  left: 27%;
+  left: 25%;
   padding-top:3%;
   font-family: 'Indie Flower', cursive;
 }
@@ -89,7 +89,7 @@ body {
 /* Modal */
 .market-modal {
   position: absolute;
-  bottom: 3%;
+  bottom: 10%;
   left: 22%;
   z-index: 10;
   background-color: #C8C8C8;
@@ -103,7 +103,7 @@ body {
 }
 
 .market-title-modal {
-  font-family: 'Indie Flower', cursive;
+  font-family: 'Indie Flower', cursive !important;
 }
 
 .schedule {
@@ -155,8 +155,16 @@ body {
 
 .results-message {
   padding-top: 1%;
+  left: 2%;
+  position: relative;
+  font-family: 'Indie Flower', cursive;
 }
+
 
 .submit-btn {
   margin-left: 1%;
+}
+
+.search-instructions {
+  font-family: 'Arvo', serif;
 }

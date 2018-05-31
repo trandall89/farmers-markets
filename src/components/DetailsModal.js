@@ -2,15 +2,6 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 class DetailsModal extends Component {
     
-      showModal(){
-    let modalClass = ['market-modal'];
-    if(this.props.name){
-      modalClass.push('show');
-
-    }
-    return modalClass.join(" ");
-  }
-
 
    render() {
 
@@ -29,7 +20,7 @@ class DetailsModal extends Component {
 
 
     return (
-        <div className={this.showModal()}>
+        <div className="market-modal">
           <div className="m-header">
               <h2 className="market-title-modal">{this.props.name}</h2>
               <div className="schedule"><i className="fa fa-calendar" aria-hidden="true"></i>{trimmedSchedule}</div>
