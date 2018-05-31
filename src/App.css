@@ -1,47 +1,149 @@
 .App {
   text-align: center;
+  background-image: url('./img/market-background.jpg');
+  height: 120vh;
+}
+body {
+  background-color: #ffd8b1;
+}
+/* Market List */
+.market-list-title {
+  width: 50%;
+  position: relative;
+  left: 27%;
+  padding-top:3%;
+  font-family: 'Indie Flower', cursive;
 }
 
-/* Market List */
-.App > ul {
-  width: 50%;
-  left: 5.5%;
+.list-wrapper {
+  width: 65%;
+  left: 27%;
   position: relative;
   margin: auto;
+  border-radius: 10px !important;
+  margin-bottom:5%;
+  opacity: .85;
 }
 
-.list-item {
-  text-align: left;
-  padding: .3em;
+.list-item-miles {
+  background-color: #e7717d;
+  color: #fffff0;
+}
+.list-item-name {
+  background-color:#afd275;
   cursor: pointer;
 }
 
-.list-item div {
-  display:inline-block;
+.fa-car,
+{
+  margin-right:10%;
+}
+.col-header {
+  background-color:#c2cad0;
+}
+
+.list-item {
+  text-align:left;
+  padding: 10px 0;
+}
+
+
+.col-header-miles {
+  border-top-right-radius: 6px;
+}
+
+.col-header-name {
+  border-top-left-radius: 6px;
+}
+
+.market:last-of-type .list-item-name {
+  border-bottom-left-radius: 6px;
+}
+
+.market:last-of-type .list-item-miles {
+  border-bottom-right-radius: 6px;
+}
+
+.list-item-name:before {
+	content:'';
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 0px;
+	min-height: 40px;
+	background: rgba(255,255,255,0.3);
+	border-radius: 5px;
+	transition: all 1s ease;
+}
+
+.list-item-name:hover:before {
+	width: 100%;
 }
 
 
 /* Modal */
 .market-modal {
-  position: fixed;
-  bottom: 30%;
-  right: 30%;
+  position: relative;
+  bottom: 82%;
+  left: 22%;
   z-index: 10;
-  background-color:red;
+  background-color: #C8C8C8;
   min-width: 40%;
   min-height: 40%;
+  width: 60%;
+  border-radius: 12px;
+  padding: 2% 0;
+  background-color: rgba(250,243,220,0.5);
+  box-shadow: -1.5px 1px 1px 1px #110c11;
 }
 
-.market-product,
-{
-  font-size: 1em;
-  text-align: left;
+.market-title-modal {
+  font-family: 'Indie Flower', cursive;
 }
 
-.product-list {
-  width: 54%;
+.schedule {
+  font-family: 'Arvo', serif;
 }
 
+  /* Product Widget */
 
+  .product-header {
+    background-color: #c2b9b0;
+    color: #fffff0;
+    border-radius: 12px 12px 0 0;
+  }
 
+ .table-row {
+   text-align: left;
+ }
 
+  .product-wrapper {
+    width: 43%;
+    padding: 3%;
+    left: 28%;
+    position: relative;
+    padding-bottom: 0;
+    opacity: 1;
+  }
+
+  .product {
+    background-color:#fffff0;
+    border-bottom:.5px dashed #D8D8D8;
+  }
+
+.table-row:last-of-type {
+  border-bottom:none;
+  border-radius: 0 0 12px 12px;
+}
+
+.fa-calendar {
+  margin-right:2%;
+}
+
+.m-header {
+  background-color: #fffff0;
+  border-radius:12px;
+  width: 50%;
+  padding: 1%;
+  margin: auto;
+}

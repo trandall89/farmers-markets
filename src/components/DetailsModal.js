@@ -1,36 +1,54 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 class DetailsModal extends Component {
-     
+
+  showModal(){
+    let modalClass = ['market-modal'];
+    if(this.props.name){
+      modalClass.push('show');
+
+    }
+    return modalClass.join(" ");
+  }
 
 
-    
+
    render() {
-       
-    const { products } = this.props;
-       
+
+    const { products, schedule } = this.props;
+
+    const trimmedSchedule = schedule.substr(0,schedule.indexOf(";"));
+
+
 
     let prodKey = 1;
-    const productsArr = products.split("; ").map(product => {
-       
-        return   <li className="market-product" key={prodKey++}>{product}</li>
-           
+    const productList = products.split("; ").map(product => {
+
+        return   <div className="col-12 table-row product" key={prodKey++}>{product}</div>
     })
-    const productList = <ul className="product-list">{productsArr}</ul> 
-    
-      
-       
+
+
+
     return (
-        <div className="market-modal">
-             <h2></h2>
-            <div className="products-wrapper">
-                <h3 className="products-header">Products:</h3>
-                {this.props.products ? productList : <div className="market-modal">Sorry. This market did not list any products!</div>}
+        <div className={this.showModal()}>
+          <div className="m-header">
+              <h2 className="market-title-modal">{this.props.name}</h2>
+              <div className="schedule"><i className="fa fa-calendar" aria-hidden="true"></i>{trimmedSchedule}</div>
+              <div className="address">{this.props.address}</div>
+          </div>
+        <div className="product-wrapper">
+          <div className="container-fluid">
+            <div className="row">
+               <div className="product-header col-12">Products:</div>
+               {this.props.products ? productList : <div className="col-12 table-row product">Sorry. This market did not list any products!</div>}
             </div>
+          </div>
         </div>
-        )   
-   }      
-} 
+        <div className="spacer" style={{clear: 'both'}}></div>
+      </div>
+        )
+   }
+}
 
 export default DetailsModal
 

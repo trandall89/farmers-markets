@@ -12,14 +12,13 @@ class App extends Component {
       markets: [],
       marketId: null,
       details: null,
-      name: null
+      currName: null
     }
   }
-  
+
   fetchMarketDetails = evt => {
     const marketId = evt.target.id
-    const name = evt.target.id ? evt.target.innerHTML : null
-    
+    const currName = evt.target.innerHTML
     const url = "https://search.ams.usda.gov/farmersmarkets/v1/data.svc/mktDetail?id="
               + marketId
     fetch(url)
@@ -32,16 +31,14 @@ class App extends Component {
         this.setState({
           marketId,
           details,
-          currName:name
+          currName,
+          showModal:true
         })
       })
   }
 
-  
-    
-
   componentWillMount() {
-   
+
   const fetchMarkets = zip => {
     const url = "http://search.ams.usda.gov/farmersmarkets/v1/data.svc/zipSearch?zip=" + zip
     fetch(url)
@@ -52,53 +49,37 @@ class App extends Component {
       })
       .then(markets => {
         this.setState({
-          markets 
+          markets
         })
       })
-    
+
     }
-    
   fetchMarkets(80301);
-
-  
-  
- 
-  
-  
-
-
-  }
-
-  
+}
 
   render() {
-    
-    
+
     const marketData = this.state.markets ? this.state.markets : null;
 
     return (
-    
+
     <div className="App" onClick={this.fetchMarketDetails}>
-      <h1>Beautiful List of Markets (not ugly)</h1>
+      <h1 className="market-list-title">80301 Farmers Markets</h1>
       {this.state ?
-      
+
         <MarketList
           markets = {marketData} /> :
           <App></App>
       }
-        {this.state.marketId ? <DetailsModal 
+        {this.state.marketId ? <DetailsModal
                                   products={this.state.details.Products}
-                                  name={this.state.Currname}/>
+                                  name={this.state.currName}
+                                  schedule={this.state.details.Schedule}
+                                  address={this.state.details.Address}
+                                  googleLink={this.state.details.GoogleLink}/>
                                   : null}
-    </div>      
-      
-      
-      
-      
-      ) 
-    
-
-
+    </div>
+      )
   }
 }
 
