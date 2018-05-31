@@ -1,35 +1,24 @@
 import React, { Component } from 'react'
 
 class ZipSearch extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-            zip: ""
-          };
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleChange(event) {
-
-    this.setState({zip: event.target.value});
-
-  }
 
   handleSubmit(event) {
-    console.log(this.state.zip)
+    let zip = document.getElementById('zipInput').value;
+    
+    isNaN(zip) || typeof zip == "undefined" || !zip || zip.length < 5 ?
+    alert("Please Enter a valid zip code") :
     event.preventDefault();
+    this.props.fetchMarkets()
   }
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit.bind(this)}>
         <label>
           Please input a valid zip code to search for Farmers Markets in your Area!
 
-        </label><br /><input type="text" value={this.state.zip} onChange={this.handleChange} />
-        <input type="submit" value="Submit" />
+        </label><br /><input id="zipInput" type="text" value={this.props.zip} onChange={this.props.handleChange} />
+        <input className="submit-btn" type="submit" value="Submit" />
       </form>
     );
   }

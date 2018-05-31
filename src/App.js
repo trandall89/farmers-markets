@@ -9,20 +9,19 @@ class App extends Component {
   constructor(props) {
     super(props);
 
+    this.handleChange = this.handleChange.bind(this)
+    this.fetchMarkets = this.fetchMarkets.bind(this)
+    
+
     this.state = {
       markets: null,
       marketId: null,
       details: null,
-      currName: null
+      currName: null,
+      zip: ""
     }
   }
-  // checkClickEvent = evt => {
-  //   if (event.target.id == "Submit") {
-  //
-  //
-  //   }
-  //
-  // }
+  
   fetchMarketDetails = evt => {
     const marketId = evt.target.id
     const currName = evt.target.innerHTML
@@ -38,14 +37,13 @@ class App extends Component {
         this.setState({
           marketId,
           details,
-          currName,
-          showModal:true
+          currName
         })
       })
   }
-
-  fetchMarkets = zip => {
-    const url = "https://search.ams.usda.gov/farmersmarkets/v1/data.svc/zipSearch?zip=" + zip
+  
+  fetchMarkets = () => {
+    const url = "https://search.ams.usda.gov/farmersmarkets/v1/data.svc/zipSearch?zip=" + this.state.zip
     fetch(url)
       .then(r => r.json())
       .then( (marketList) => {
@@ -59,6 +57,12 @@ class App extends Component {
       })
 
     }
+    
+   handleChange(event) {
+
+    this.setState({zip: event.target.value});
+
+  }
 
   componentWillMount() {
 
@@ -72,12 +76,19 @@ class App extends Component {
     return (
 
     <div className="App" onClick={this.fetchMarketDetails}>
-      <h1 className="market-list-title">80301 Farmers Markets</h1>
-      <ZipSearch />
-      {this.state.zip ?
-
+      <h1 className="market-list-title">Farmers Markets</h1>
+      <ZipSearch
+           zip={this.state.zip}
+           handleChange={this.handleChange}
+           fetchMarkets={this.fetchMarkets}
+            />
+      {this.state.markets ?
+      <div>
+        <h3 className="results-message">Showing results for {this.state.zip}</h3>
         <MarketList
-          markets = {marketData} /> :
+          markets = {marketData}
+          zip = {this.state.zip}/>
+      </div>:
           null
       }
         {this.state.marketId ? <DetailsModal
@@ -85,7 +96,8 @@ class App extends Component {
                                   name={this.state.currName}
                                   schedule={this.state.details.Schedule}
                                   address={this.state.details.Address}
-                                  googleLink={this.state.details.GoogleLink}/>
+                                  googleLink={this.state.details.GoogleLink}
+                                 />
                                   : null}
     </div>
       )

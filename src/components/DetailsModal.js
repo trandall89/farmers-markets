@@ -1,6 +1,15 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 class DetailsModal extends Component {
+    
+      showModal(){
+    let modalClass = ['market-modal'];
+    if(this.props.name){
+      modalClass.push('show');
+
+    }
+    return modalClass.join(" ");
+  }
 
 
    render() {

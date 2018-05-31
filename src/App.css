@@ -1,7 +1,12 @@
+body{
+ background-image: url('./img/market-background.jpg'); 
+  
+}
+
+
+
 .App {
   text-align: center;
-  background-image: url('./img/market-background.jpg');
-  height: 120vh;
 }
 body {
   background-color: #ffd8b1;
@@ -34,10 +39,10 @@ body {
   cursor: pointer;
 }
 
-.fa-car,
-{
+.fa-car {
   margin-right:10%;
 }
+
 .col-header {
   background-color:#c2cad0;
 }
@@ -83,8 +88,8 @@ body {
 
 /* Modal */
 .market-modal {
-  position: relative;
-  bottom: 82%;
+  position: absolute;
+  bottom: 3%;
   left: 22%;
   z-index: 10;
   background-color: #C8C8C8;
@@ -146,4 +151,12 @@ body {
   width: 50%;
   padding: 1%;
   margin: auto;
+}
+
+.results-message {
+  padding-top: 1%;
+}
+
+.submit-btn {
+  margin-left: 1%;
 }
