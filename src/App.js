@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import MarketList from './components/MarketList';
 import DetailsModal from './components/DetailsModal';
+import ZipSearch from './components/ZipSearch';
 
 class App extends Component {
 
@@ -9,13 +10,19 @@ class App extends Component {
     super(props);
 
     this.state = {
-      markets: [],
+      markets: null,
       marketId: null,
       details: null,
       currName: null
     }
   }
-
+  // checkClickEvent = evt => {
+  //   if (event.target.id == "Submit") {
+  //
+  //
+  //   }
+  //
+  // }
   fetchMarketDetails = evt => {
     const marketId = evt.target.id
     const currName = evt.target.innerHTML
@@ -37,10 +44,8 @@ class App extends Component {
       })
   }
 
-  componentWillMount() {
-
-  const fetchMarkets = zip => {
-    const url = "http://search.ams.usda.gov/farmersmarkets/v1/data.svc/zipSearch?zip=" + zip
+  fetchMarkets = zip => {
+    const url = "https://search.ams.usda.gov/farmersmarkets/v1/data.svc/zipSearch?zip=" + zip
     fetch(url)
       .then(r => r.json())
       .then( (marketList) => {
@@ -54,7 +59,10 @@ class App extends Component {
       })
 
     }
-  fetchMarkets(80301);
+
+  componentWillMount() {
+
+
 }
 
   render() {
@@ -65,11 +73,12 @@ class App extends Component {
 
     <div className="App" onClick={this.fetchMarketDetails}>
       <h1 className="market-list-title">80301 Farmers Markets</h1>
-      {this.state ?
+      <ZipSearch />
+      {this.state.zip ?
 
         <MarketList
           markets = {marketData} /> :
-          <App></App>
+          null
       }
         {this.state.marketId ? <DetailsModal
                                   products={this.state.details.Products}
